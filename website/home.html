@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <title>
+            asdf
+        </title>
+        <meta charset="UTF-8">
+    </head>
+    <body style="background-color:rgb(20, 10, 78) ;">
+        <style>
+            button{
+                background-color: rgb(20, 34, 65);
+                color: white;
+                font-style: italic;
+                box-shadow: 0 0px 100px 0 #86cfffe0,0px 0px 100px 0 #86cfffe0;
+                border-radius: 50%;
+                padding: .7em 1em;
+            }
+            button:hover {
+                transform: rotate(360);
+                transform: scale(0.9);
+                box-shadow: 0 0px 100px 0 #ff86ffa8,0px 0px 100px 0 #ff86ffa8;
+            }
+
+
+            button:active {
+                filter: brightness(.8);
+            }
+        </style>
+        <button id="button" title="butt"> click </button>
+
+        <h1 id="out"> <br></h1>
+        <form id = "f" action = "filter.html" method="post">
+            <label> option 1 </label>
+            <input type="text" id="search1" name="search"> <br>
+            <label> option 2 </label>
+            <input type="text" id="search2" name="search"> <br>
+            <label> option 3 </label>
+            <input type="text" id="search3" name="search"> <br>
+            <label> option 4 </label>
+            <input type="text" id="search4" name="search"> <br>
+            <label> option 5 </label>
+            <input type="text" id="search5" name="search"> <br>
+            <button style = "border-inline-color: red;  margin:0mm; color:chocolate; background-color:bisque; box-shadow: -10px 10px 30px rgb(220, 99, 202)"  type = "submit" onclick="formHandle()">Submit </button>
+        </form>
+        <script src = "js/main.js"></script>
+        
+    </body>
+    
+
+</html>

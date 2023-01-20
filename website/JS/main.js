@@ -1,9 +1,7 @@
 /*
 document.getElementById('button').onclick = function(){
     document.getElementById('out').innerHTML = "123";
-
 }
-//change1
 */
 document.getElementById('button').addEventListener("click", display);
 

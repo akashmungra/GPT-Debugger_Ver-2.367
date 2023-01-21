@@ -4,6 +4,7 @@ document.getElementById('button').onclick = function(){
 }
 */
 function debug(){
+    console.log("buttonClicked")
     let instructions = document.getElementById('instructions');
     let codeblock = document.getElementById('codeblock');
     if(instructions.value == "" || codeblock.value == ""){

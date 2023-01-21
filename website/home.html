@@ -1,51 +1,76 @@
 <!DOCTYPE html>
 <html lang="en-US">
-    <head>
-        <title>
-            asdf edit 2
-        </title>
-        <meta charset="UTF-8">
-    </head>
-    <body style="background-color:rgb(20, 10, 78) ;">
-        <style>
-            button{
-                background-color: rgb(20, 34, 65);
-                color: white;
-                font-style: italic;
-                box-shadow: 0 0px 100px 0 #86cfffe0,0px 0px 100px 0 #86cfffe0;
-                border-radius: 50%;
-                padding: .7em 1em;
-            }
-            button:hover {
-                transform: rotate(360);
-                transform: scale(0.9);
-                box-shadow: 0 0px 100px 0 #ff86ffa8,0px 0px 100px 0 #ff86ffa8;
-            }
 
+<head>
+    <title>
+        GPT-Debugger
+    </title>
+    <meta charset="UTF-8">
+</head>
+<style>
+    h2 {
+        text-align: center;
+        color: white;
+        font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
 
-            button:active {
-                filter: brightness(.8);
-            }
-        </style>
-        <button id="button" title="butt"> click </button>
-
-        <h1 id="out"> <br></h1>
-        <form id = "f" action = "filter.html" method="post">
-            <label> option 1 </label>
-            <input type="text" id="search1" name="search"> <br>
-            <label> option 2 </label>
-            <input type="text" id="search2" name="search"> <br>
-            <label> option 3 </label>
-            <input type="text" id="search3" name="search"> <br>
-            <label> option 4 </label>
-            <input type="text" id="search4" name="search"> <br>
-            <label> option 5 </label>
-            <input type="text" id="search5" name="search"> <br>
-            <button style = "border-inline-color: red;  margin:0mm; color:chocolate; background-color:bisque; box-shadow: -10px 10px 30px rgb(220, 99, 202)"  type = "submit" onclick="formHandle()">Submit </button>
-        </form>
-        <script src = "js/main.js"></script>
-        
-    </body>
+    textarea{
+        width: 600px;
+        height: 450px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        resize: none;
+    }
     
+    textarea{
+        font-family: 'Courier New', Courier, monospace;
+    }
+
+    .debugButton{
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        font-size: 24px;
+        font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    .column {
+        
+        float: left;
+        margin-top: 20px;
+        width: 50%;
+        padding: 20px;
+        height: 600px;
+        background-color: hsla(0,0%,100%,.05);
+    }
+
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+</style>
+
+<body style="background-color:rgb(52,53,65) ;">
+    <form id="theForm" action="filter.html" method="post"></form>
+    <div class="row">
+        <div class="column">
+            <h2>Instructions: </h2>
+            <textarea id="instructions" name="instructions"></textarea>
+        </div>
+        <div class="column">
+            <h2>Code: </h2>
+            <textarea id="codeblock" name="codeblock"></textarea>
+        </div>
+    </div>
+    <button class="debugButton" id="button" type="submit" onclick="debug()"> Debug </button>
+    </form>
+    <script src="js/main.js"></script>
+</body>
 
 </html>

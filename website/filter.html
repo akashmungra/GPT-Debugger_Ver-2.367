@@ -7,12 +7,21 @@
         <meta charset="UTF-8">
     </head>
     <body>
-        <p1 id="result"></p1>
+        <p1 id="result" style="white-space: pre-line"></p1> 
+        <br>
+        <br>
+        <br>
+        <p2 id="res" style="white-space: pre-line">Loading your response...</p2>
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="./main.js"></script>
+
         <script>
-            let form = document.getElementById('f');
             let o = document.getElementById('result');
-            o.innerHTML = sessionStorage.getItem("instructions") + " " + sessionStorage.getItem("code");
+            o.innerHTML = sessionStorage.getItem('instructions') + " " + sessionStorage.getItem("code");
+
+
         </script>
+        
         
     </body>
     <script>

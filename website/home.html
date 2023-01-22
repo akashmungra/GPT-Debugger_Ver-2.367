@@ -57,22 +57,22 @@
 </style>
 
 <body style="background-color:rgb(52,53,65) ;">
-    <form id="theForm" action="filter.html" method="post"></form>
-    <div class="row">
-        <div class="column">
-            <h2>Instructions: </h2>
-            <textarea id="instructions" name="instructions"></textarea>
+    <form id="theForm" action="filter.html" method="post">
+        <div class="row">
+            <div class="column">
+                <h2>Instructions: </h2>
+                <textarea id="instructions" name="instructions"></textarea>
+            </div>
+            <div class="column">
+                <h2>Code: </h2>
+                <textarea id="codeblock" name="codeblock"></textarea>
+            </div>
         </div>
-        <div class="column">
-            <h2>Code: </h2>
-            <textarea id="codeblock" name="codeblock"></textarea>
-        </div>
-    </div>
-    <button class="debugButton" id="button" type="submit" onclick="debug()"> Debug </button>
+        <button class="debugButton" id="button" type="submit" onclick="debug()"> Debug </button>
     </form>
-    <form method="POST" action="filter.html">  
-        <input type="submit"/>  
-    </form> 
+
+
+    <script src="/socket.io/socket.io.js"></script>
     <script src="./main.js"></script>
 </body>
 

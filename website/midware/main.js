@@ -11,6 +11,7 @@ function debug(){
         alert("Please enter text in both boxes");
         return;
     }
+    document.getElementById('result').innerHTML = instructions.value + " " + codeblock.value;
     sessionStorage.setItem("instructions", instructions.value);
     sessionStorage.setItem("code", codeblock.value);
 }

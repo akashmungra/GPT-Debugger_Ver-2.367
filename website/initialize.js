@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const path = require('path');
+require('dotenv').config()
 
 //app.use(express.static(__dirname + '/home.html')); // html
 app.use(express.static(path.join(__dirname, "midware"))); // js, css, images
@@ -14,22 +15,51 @@ app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname, '/home.html'));
 });
 
-app.post('/filter.html', function(req, res) {
-    res.sendFile(path.join(__dirname, '/filter.html'));
+app.get('/home.html', function(req, res) {
+    res.sendFile(path.join(__dirname, '/home.html'));
+});
+
+app.get('/history.html', function(req, res) {
+    res.sendFile(path.join(__dirname, '/history.html'));
+});
+
+app.get('/about.html', function(req, res) {
+    res.sendFile(path.join(__dirname, '/about.html'));
 });
   
+
+
 const io = require('socket.io')(server);
 io.on('connection', function(socket){
-    console.log('a user connected');
+    socket.on("message", (m)=>{
+        console.log(m);
+        console.log("message activated");
+        // console.log("client instructions:", m.i);
+        // console.log("client code:", m.c);
+        io.emit("output", m);
+        // socket.emit("output", "sock");
+        
+    })
+
+    socket.on("alert", (m)=>{
+        console.log("Client message:", m);
+    });
+
+    socket.on("m", (m) =>{
+        console.log("returning completion"); 
+        runCompletion(m.i, m.c).then(text => {
+            console.log("completion:", text);
+            io.emit("gtp", text);
+        });
+    })
 });
 
-/*
+
+
 const { Configuration, OpenAIApi } = require("openai");
-
-let OPENAI_API_KEY="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";
-
+console.log(process.env.OPENAI_API_KEY);
 const configuration = new Configuration({
-    apiKey: OPENAI_API_KEY,
+    apiKey: process.env.OPENAI_API_KEY,
   });
 const openai = new OpenAIApi(configuration);
 
@@ -60,24 +90,23 @@ let c =
     return newHead;
 }`;
 
-let result = "#the following function will do as follows: " + a + "\n\n" + c + "\n" + "\n" + "#identify if the code above works as intended. Report any possible inefficiencies, better implementations that improve space/time complexity, or optimizations. Explain these in great detail.";
 
 
-async function runCompletion () {
+async function runCompletion (a, c) {
+    let result = "#the following function will do as follows: " + a + "\n\n" + c + "\n" + "\n" + "#identify if the code above works as intended. Report any possible inefficiencies, better implementations that improve space/time complexity, or optimizations. Explain these in great detail.";
     const completion = await openai.createCompletion({
       model: "code-davinci-002",
-      prompt: p,
-      temperature: 0,
-      max_tokens: 610,
+      prompt: result,
+      temperature: 0.1,
+      //max_tokens: 610,
+      max_tokens:420,
       top_p: 1,
       frequency_penalty: 0.6,
       presence_penalty: 0.2,
       best_of: 1,
+      
     });
-    let out = completion.data.choices[0].text;
-    document.getElementById('out').innerHTML = out;
-    console.log(completion.data.choices[0].text);
+    console.log(completion.data.choices.length >= 1 ? completion.data.choices[1] : "");
+    return completion.data.choices[0].text;
 }
 
-runCompletion();
-*/

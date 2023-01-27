@@ -15,8 +15,16 @@ app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname, '/home.html'));
 });
 
-app.post('/filter.html', function(req, res) {
-    res.sendFile(path.join(__dirname, '/filter.html'));
+app.get('/home.html', function(req, res) {
+    res.sendFile(path.join(__dirname, '/home.html'));
+});
+
+app.get('/history.html', function(req, res) {
+    res.sendFile(path.join(__dirname, '/history.html'));
+});
+
+app.get('/about.html', function(req, res) {
+    res.sendFile(path.join(__dirname, '/about.html'));
 });
   
 

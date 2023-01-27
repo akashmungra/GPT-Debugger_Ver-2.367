@@ -2,9 +2,10 @@ const socket = io("http://localhost:5000");
 let c = -1;
 
 socket.on("gtp", (text)=>{
-    let o = document.getElementById('output');
+    // let o = document.getElementById('res');
     console.log("recieved text");
-    o.innerHTML = text;
+    // o.innerHTML = text;
+    document.getElementById("output").innerHTML = text;
 });
 function handleTabs(e){
     if (e.key == 'Tab') {
@@ -26,6 +27,7 @@ document.getElementById('codeblock').addEventListener('keydown', handleTabs);
 document.getElementById('instructions').addEventListener('keydown', handleTabs);
 
 function debug(){
+    console.log("buttonClicked")
     let instructions = document.getElementById('instructions');
     let codeblock = document.getElementById('codeblock');
     if(instructions.value == "" || codeblock.value == ""){
@@ -33,7 +35,8 @@ function debug(){
         return;
     }
     socket.emit("m", {i: instructions.value, c: codeblock.value});
-
+    document.getElementById("output").innerHTML = "Generating response..."
+    document.getElementById('result').innerHTML = instructions.value + " " + codeblock.value;
     sessionStorage.setItem("instructions", instructions.value);
     sessionStorage.setItem("code", codeblock.value);
 }

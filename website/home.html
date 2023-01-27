@@ -3,6 +3,11 @@
 <head>
     <script src="/socket.io/socket.io.js"></script>
     <script src="/main.js"></script>
+    <script>
+        if(sessionStorage.getItem('history') == null){
+            sessionStorage.setItem('history', '[]');
+        };
+    </script>
     <title>
         GPT-Debugger
     </title>
@@ -96,29 +101,24 @@
         <a href="./about.html">About</a>
     </div>
 
-<body style="background-color:rgb(52,53,65) ;">
-    <form id="theForm">
+    <form id="f" name = 'f'>
         <div class="row">
             <div class="column">
                 <h2>Instructions: </h2>
                 <textarea style="height: 50px;" id="instructions" name="instructions" form="f"></textarea>
                 <h2>Code: </h2>
                 <textarea style="height: 400px;" id="codeblock" name="codeblock" form="f"></textarea>
-                <textarea style="height: 50px;" id="instructions" name="instructions" form="f"></textarea>
-                <h2>Code: </h2>
-                <textarea style="height: 400px;" id="codeblock" name="codeblock" form="f"></textarea>
             </div>
             <div class="column">
-                <h2>Code: </h2>
-                <textarea id="codeblock" name="codeblock"></textarea>
+                <h2>Output: </h2>
+                <textarea readonly style="height: 518px;" id="output" name="output"></textarea>
             </div>
         </div>
-        <button class="debugButton" id="button" type="submit" onclick="debug()"> Debug </button>
+        <button class="debugButton" id="button" type="button" onclick="debug()"> Debug </button>
     </form>
-
-
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="./main.js"></script>
+    <script>
+        callTabs();
+    </script>
 </body>
 
 </html>

@@ -2,7 +2,7 @@ const socket = io("http://localhost:5000");
 let c = -1;
 
 socket.on("gtp", (text)=>{
-    let o = document.getElementById('res');
+    let o = document.getElementById('output');
     console.log("recieved text");
     o.innerHTML = text;
 });
@@ -21,6 +21,7 @@ function handleTabs(e){
         this.selectionEnd = start + 1;
     }
 }
+
 document.getElementById('codeblock').addEventListener('keydown', handleTabs);
 document.getElementById('instructions').addEventListener('keydown', handleTabs);
 

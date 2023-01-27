@@ -81,14 +81,15 @@ let c =
     next.next = head;
     return newHead;
 }`;
+let result = "#the following function will do as follows: " + a + "\n\n" + c + "\n" + "\n" + "#identify if the code above works as intended. Report any possible inefficiencies, better implementations that improve space/time complexity, or optimizations. Explain these in great detail.";
 
 
 
 async function runCompletion (a, c) {
-    let result = "#the following function will do as follows: " + a + "\n\n" + c + "\n" + "\n" + "#identify if the code above works as intended. Report any possible inefficiencies, better implementations that improve space/time complexity, or optimizations. Explain these in great detail.";
+    let res = "the following function will do as follows: " + a + "\n\n" + c + "\n" + "\n" + "identify if the code above works as intended. Report any possible inefficiencies, better implementations that improve space/time complexity, or optimizations. Explain these in great detail.";
     const completion = await openai.createCompletion({
       model: "code-davinci-002",
-      prompt: result,
+      prompt: res,
       temperature: 0.1,
       //max_tokens: 610,
       max_tokens:420,

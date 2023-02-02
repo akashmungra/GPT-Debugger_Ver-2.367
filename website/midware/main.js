@@ -1,12 +1,21 @@
 const socket = io("http://localhost:5000");
-let c = -1;
+let hList;
 
+//recieves output data from socket and displays it on home.html
+//stores output/input data for history.html
 socket.on("gtp", (text)=>{
-    // let o = document.getElementById('res');
-    console.log("recieved text");
-    // o.innerHTML = text;
+    hList = JSON.parse(sessionStorage.getItem('history'));
+    hList.push({
+        i: sessionStorage.getItem('i'),
+        c: sessionStorage.getItem('c'),
+        o: text
+    });
+    sessionStorage.setItem('history', JSON.stringify(hList));
     document.getElementById("output").innerHTML = text;
 });
+
+
+//helper function for below
 function handleTabs(e){
     if (e.key == 'Tab') {
         e.preventDefault();
@@ -52,7 +61,7 @@ function addPrompts(){
         let curI = document.createTextNode("Instructions: " + e.i);
         let curC = document.createTextNode("Code: " + e.c);
         let curO = document.createTextNode("Output: " + e.o);
-        curs = [curI, curC, curO];
+        let curs = [curI, curC, curO];
 
         let pI = document.createElement("p");
         let pC = document.createElement("p");

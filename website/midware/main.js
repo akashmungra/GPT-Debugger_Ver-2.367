@@ -23,9 +23,13 @@ function handleTabs(e){
     }
 }
 
+//called in main.js to handle tabs
+function callTabs(){
     document.getElementById('codeblock').addEventListener('keydown', handleTabs);
     document.getElementById('instructions').addEventListener('keydown', handleTabs);
+}
 
+//send input information through the socket
 function debug(){
     let instructions = document.getElementById('instructions');
     let codeblock = document.getElementById('codeblock');
@@ -48,7 +52,7 @@ function addPrompts(){
         let curI = document.createTextNode("Instructions: " + e.i);
         let curC = document.createTextNode("Code: " + e.c);
         let curO = document.createTextNode("Output: " + e.o);
-        let curs = [curI, curC, curO];
+        curs = [curI, curC, curO];
 
         let pI = document.createElement("p");
         let pC = document.createElement("p");

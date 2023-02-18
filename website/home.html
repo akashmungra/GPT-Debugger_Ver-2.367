@@ -90,11 +90,14 @@
             display: table;
             clear: both;
         }
+        .output:hover{
+            color:orange;
+        }
     </style>
     <meta charset="UTF-8">
 </head>
 
-<body style="background-color:rgba(49, 50, 66, 0.952) ;">
+<body onload="copyOutput()" style="background-color:rgba(49, 50, 66, 0.952) ;">
     <div class="topnav">
         <a href="./home.html">Home</a>
         <a href="./history.html">History</a>
@@ -111,7 +114,7 @@
             </div>
             <div class="column">
                 <h2>Output: </h2>
-                <textarea readonly style="height: 518px;" id="output" name="output"></textarea>
+                <textarea class="output" readonly style="height: 518px;" id="output" name="output"></textarea>
             </div>
         </div>
         <button class="debugButton" id="button" type="button" onclick="debug()"> Debug </button>

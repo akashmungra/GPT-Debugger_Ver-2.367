@@ -1,3 +1,4 @@
+//akash branch
 const express = require('express');
 const app = express();
 const path = require('path');
@@ -57,7 +58,6 @@ io.on('connection', function(socket){
 
 
 const { Configuration, OpenAIApi } = require("openai");
-console.log(process.env.OPENAI_API_KEY);
 const configuration = new Configuration({
     apiKey: process.env.OPENAI_API_KEY,
   });
@@ -95,9 +95,10 @@ let result = "#the following function will do as follows: " + a + "\n\n" + c + "
 
 async function runCompletion (a, c) {
     let res = "the following function will do as follows: " + a + "\n\n" + c + "\n" + "\n" + "identify if the code above works as intended. Report any possible inefficiencies, better implementations that improve space/time complexity, or optimizations. Explain these in great detail.";
+    let newRes = "here is what the following code should do: " + a + "\nfix all the bugs in the code" + "\n\n" + c + "\n\n"; 
     const completion = await openai.createCompletion({
       model: "code-davinci-002",
-      prompt: res,
+      prompt: newRes,
       temperature: 0.1,
       //max_tokens: 610,
       max_tokens:420,

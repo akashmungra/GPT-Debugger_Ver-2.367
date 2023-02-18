@@ -4,6 +4,7 @@ let hList;
 //recieves output data from socket and displays it on home.html
 //stores output/input data for history.html
 socket.on("gtp", (text)=>{
+
     hList = JSON.parse(sessionStorage.getItem('history'));
     hList.push({
         i: sessionStorage.getItem('i'),
@@ -57,6 +58,7 @@ function debug(){
 //pull history array from sessionStorage and display for history.html
 function addPrompts(){
     hList = JSON.parse(sessionStorage.getItem('history'));
+
     hList.forEach(e => {
         let curI = document.createTextNode("Instructions: " + e.i);
         let curC = document.createTextNode("Code: " + e.c);
@@ -76,6 +78,7 @@ function addPrompts(){
             p.appendChild(curs[c]);
             document.getElementById("promptList").appendChild(p);
         })
+        
         document.getElementById("promptList").appendChild(document.createElement("br"));
         let outputs = document.getElementsByClassName("p3");
         for(let i = 0; i < outputs.length; i++){
@@ -95,3 +98,4 @@ function copyText(){
 function copyOutput(){
     document.getElementById("output").addEventListener('click', copyText);
 }
+

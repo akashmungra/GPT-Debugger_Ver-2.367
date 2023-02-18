@@ -61,12 +61,12 @@ function addPrompts(){
         let curI = document.createTextNode("Instructions: " + e.i);
         let curC = document.createTextNode("Code: " + e.c);
         let curO = document.createTextNode("Output: " + e.o);
+
         let curs = [curI, curC, curO];
 
         let pI = document.createElement("p");
         let pC = document.createElement("p");
         let pO = document.createElement("p");
-
         
         let prompts = [pI, pC, pO];
         let c = -1;
@@ -81,7 +81,6 @@ function addPrompts(){
         for(let i = 0; i < outputs.length; i++){
             outputs[i].addEventListener('click', copyText);
         }
-        console.log(outputs)
     })
 }
 

@@ -11,7 +11,6 @@ socket.on("gtp", (text)=>{
         o: text
     });
     sessionStorage.setItem('history', JSON.stringify(hList));
-    console.log(sessionStorage.getItem('history'));
     document.getElementById("output").innerHTML = text;
 });
 
@@ -62,12 +61,12 @@ function addPrompts(){
         let curI = document.createTextNode("Instructions: " + e.i);
         let curC = document.createTextNode("Code: " + e.c);
         let curO = document.createTextNode("Output: " + e.o);
-        curs = [curI, curC, curO];
+
+        let curs = [curI, curC, curO];
 
         let pI = document.createElement("p");
         let pC = document.createElement("p");
         let pO = document.createElement("p");
-
         
         let prompts = [pI, pC, pO];
         let c = -1;
@@ -77,8 +76,22 @@ function addPrompts(){
             p.appendChild(curs[c]);
             document.getElementById("promptList").appendChild(p);
         })
-        
-        document.getElementById("promptList").appendChild(document.createElement("br"))
-    
+        document.getElementById("promptList").appendChild(document.createElement("br"));
+        let outputs = document.getElementsByClassName("p3");
+        for(let i = 0; i < outputs.length; i++){
+            outputs[i].addEventListener('click', copyText);
+        }
     })
+}
+
+function copyText(){ 
+    if(this.innerHTML == ""){
+        return;
+    }
+    navigator.clipboard.writeText(this.innerHTML);
+    alert("Output copied to clipboard.")
+}
+
+function copyOutput(){
+    document.getElementById("output").addEventListener('click', copyText);
 }
